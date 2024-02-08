@@ -8,6 +8,9 @@ import Checkbox1 from "../../components/common/buttons/checkbox/Checkbox1";
 
 function InfoPage() {
   const [stayLoggedIn, setStayLoggedIn] = useState(false);
+  const handleClick = () => {
+    alert("Hallo von der Info Seite");
+  };
 
   function onClickStayLoggedIn() {
     setStayLoggedIn(!stayLoggedIn);
@@ -39,9 +42,9 @@ function InfoPage() {
       </div>
       <div>
         <div className="check">
-          <div> This is my Info page</div>
           <LoadingDiv />
-          <StandardBtn />
+          <StandardBtn onClick={handleClick} text="Klick mich" />
+          <div> This is my Info page</div>
           <Checkbox1 isChecked={stayLoggedIn} onClick={onClickStayLoggedIn} />
         </div>
       </div>
