@@ -1,5 +1,5 @@
-/*.myBtn {
-  padding: 4px 8px;
+.myBtn {
+  padding: 10px 30px;
   border-radius: 8px;
   color: white;
   background-color: var(--secondary-color);
@@ -8,22 +8,9 @@
     background-color: var(--primary-color);
   }
 }
-*/
 
-.myBtn {
-  background-color: #4CAF50; /* Grün */
-  border: none;
-  color: white;
-  padding: 15px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 10px 20px;
-  cursor: pointer;
-  border-radius: 12px;
-  transition-duration: 0.4s;
-}
+
+
 
 .myBtn:hover {
   background-color: #2c632f;
