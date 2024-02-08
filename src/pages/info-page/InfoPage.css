@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh; /* Usa el 100% de la altura de la ventana */
+}
+
+.Navbar {
+  display: flex; /* Cambiado a flex */
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e13d3d;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  border-radius: 5px;
+}
+button {
+  background-color: rgb(0, 21, 255);
+  color: white;
+
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.check {
+  display: flex; /* Cambiado a flex */
+  justify-content: center;
+  align-items: center;
+  background-color: #3de150;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+}
+
+.Navbar div {
+  margin: 0 10px;
+}
+
+.p1 {
+  text-align: center;
+  width: 100%; /* Ocupa el 100% del ancho del contenedor */
+}
