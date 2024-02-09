@@ -7,6 +7,7 @@ import ImpressumPage from "./pages/impressum-page";
 import Content from "./components/layout/content";
 import AboutMePage from "./pages/aboutme-page";
 import Footer from "./components/layout/footer";
+import InfoPage from "./pages/info-page";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/impressum" element={<ImpressumPage />} />
+          <Route path="/infopage" element={<InfoPage />} />
           <Route path="/aboutme" element={<AboutMePage />} />
         </Routes>
       </Content>
