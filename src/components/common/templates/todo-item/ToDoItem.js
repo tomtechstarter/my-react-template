@@ -1,9 +1,16 @@
+import Checkbox from "../../buttons/checkbox";
 import styles from "./ToDoItem.module.css";
 
-function ToDoItem() {
+function ToDoItem({ todo }) {
   return (
     <div className={styles.mainContainer}>
-      <label>Aufgabe: </label>
+      <h1>ToDo-Item</h1>
+      <div className={styles.horizontalLine}></div>
+      <p>Aufgabe: PLATZHALTER</p>
+      <p>DueDate: {new Date(Date.now()).toDateString()}</p>
+      <label>
+        Geschafft: <input type="checkbox"></input>
+      </label>
     </div>
   );
 }
