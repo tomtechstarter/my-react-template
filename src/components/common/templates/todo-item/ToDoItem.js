@@ -6,10 +6,10 @@ function ToDoItem({ todo }) {
     <div className={styles.mainContainer}>
       <h1>ToDo-Item</h1>
       <div className={styles.horizontalLine}></div>
-      <p>Aufgabe: PLATZHALTER</p>
+      <p>Aufgabe: {todo.task}</p>
       <p>DueDate: {new Date(Date.now()).toDateString()}</p>
       <label>
-        Geschafft: <input type="checkbox"></input>
+        Geschafft: <input type="checkbox" defaultChecked="false"></input>
       </label>
     </div>
   );
