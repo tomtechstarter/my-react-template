@@ -31,6 +31,7 @@ function ToDoPage() {
   //hier: "todo={todos[1]}" gibt das 2. todo weiter.
   return (
     <div className={styles.mainContainer}>
+      /*
       <ToDoItem todo={todos[0]}></ToDoItem>
       <ToDoItem todo={todos[1]}></ToDoItem>
     </div>

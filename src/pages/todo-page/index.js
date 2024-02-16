@@ -1,3 +1,3 @@
-import ToDoPage from "./todoPageage";
+import ToDoPage from "./todoPage";
 
 export default ToDoPage;

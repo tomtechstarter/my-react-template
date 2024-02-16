@@ -1,3 +1,3 @@
-import ToDoItem from "./ToDoItem";
+import ToDoItem from "./toDoItem";
 
 export default ToDoItem;
