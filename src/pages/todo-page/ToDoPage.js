@@ -1,4 +1,4 @@
-import { TodosQueries } from "../../api/v1/todos";
+import { TodosMutations, TodosQueries } from "../../api/v1/todos";
 import ToDoItem from "../../components/common/templates/todo-item";
 import styles from "./ToDoPage.module.css";
 import { useState, useEffect } from "react";
@@ -43,6 +43,12 @@ function ToDoPage() {
   // useEffect
   useEffect(() => {
     fetchTodos();
+
+    TodosQueries.fetchTodoById(1);
+    TodosMutations.createTodo({
+      id: 10,
+      done: false,
+    });
   }, []);
 
   //###Ergänzung zum Code vom Unterricht:###
@@ -56,8 +62,9 @@ function ToDoPage() {
   //hier: "todo={todos[1]}" gibt das 2. todo weiter.
   return (
     <div className={styles.mainContainer}>
-      <ToDoItem todo={todos[0]}></ToDoItem>
-      <ToDoItem todo={todos[1]}></ToDoItem>
+      {todos.map((item) => (
+        <ToDoItem key={item.id} todo={item} />
+      ))}
     </div>
   );
 }

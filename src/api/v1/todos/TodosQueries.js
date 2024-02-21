@@ -13,6 +13,8 @@ async function fetchTodoById(todoId) {
 
   const todo = result.data.todo;
 
+  console.log("Mein Todo /byid", todo);
+
   return todo;
 }
 

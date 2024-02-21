@@ -10,4 +10,25 @@ async function createTodo(newTodo) {
   return todos;
 }
 
-export default { createTodo };
+async function markTodo(todoId, isDone) {
+  const result = await api.put("/todos/mark", {
+    id: todoId,
+    newIsDone: isDone,
+  });
+
+  const todo = result.data.updatedTodo;
+
+  return todo;
+}
+
+async function deleteTodo(todoId) {
+  const result = await api.delete("/todos/delete", {
+    data: { todoId },
+  });
+
+  const deletedTodoId = result.data.deletedTodoId;
+
+  return deletedTodoId;
+}
+
+export default { createTodo, markTodo, deleteTodo };
