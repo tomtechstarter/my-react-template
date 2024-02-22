@@ -44,11 +44,8 @@ function ToDoPage() {
   useEffect(() => {
     fetchTodos();
 
-    TodosQueries.fetchTodoById(1);
-    TodosMutations.createTodo({
-      id: 10,
-      done: false,
-    });
+    // ausprobieren ob API-Request klappt
+    // TodosMutations.updateTodo(4, "lesen", true, "2024-01-01");
   }, []);
 
   //###Ergänzung zum Code vom Unterricht:###
