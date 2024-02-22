@@ -15,7 +15,7 @@ Die Vorteile die daraus entstehen:
 ### public Ordner
 
 Der public Ordner enthält statische assets, wie Bilder und die favicon.ico Datei.
-Außerdem enthält er die `index.html`, welche als Einstiegspunkt für unsere React App dient nd ein Skript lädt, um die React App zu starten. Zu diesem Zeitpunkt soll uns diese Datei aber erstmal nicht interessieren.
+Außerdem enthält er die `index.html`, welche als Einstiegspunkt für unsere React App dient und ein Skript lädt, um die React App zu starten. Zu diesem Zeitpunkt soll uns diese Datei aber erstmal nicht interessieren.
 
 ### Weitere Dateien, die ihr schon aus anderen Node Projekten kennt
 
@@ -66,7 +66,7 @@ In diesem Ordner sollen sich alle API Anfragen an unsere Express App befinden
 
 ### /src/compoents
 
-- Hier sollen alle wiederverndbaren und integrierten einzelnen Komponenten abgelegt werden
+- Hier sollen alle wiederverwendbaren und integrierten einzelnen Komponenten abgelegt werden
 
 ### /src/pages
 
@@ -78,13 +78,13 @@ In diesem Ordner sollen sich alle API Anfragen an unsere Express App befinden
 Hier sollen sich alle global definierten styles befinden
 Diese sollten dann in der zuvor erwähneten App.js importiert werden
 
-## Grundlegender Aufba einer React Komponente
+## Grundlegender Aufbau einer React Komponente
 
 - Für eine Komponente sollte ein Ordner angelegt werden mit folgenden Datein
 
 ### <Komponente>.js
 
-- Die eigentliche Kompnente
+- Die eigentliche Komponente
 - Komponenten werden bei Konvention groß geschrieben
 
 ```javascript
