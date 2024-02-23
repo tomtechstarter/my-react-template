@@ -5,7 +5,7 @@ import { TodosMutations } from "../../../../api/v1/todos";
 import StandardBtn from "../../buttons/standard-btn/StandardBtn";
 
 function ToDoItem({ todo }) {
-  console.log("TODO", todo);
+  // console.log("TODO", todo);
   const [isDone, setIsDone] = useState(todo.isDone);
   const [task, setTask] = useState(todo.task);
   const [dueDate, setDueDate] = useState(todo.dueDate);

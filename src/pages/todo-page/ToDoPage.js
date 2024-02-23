@@ -1,4 +1,6 @@
 import { TodosMutations, TodosQueries } from "../../api/v1/todos";
+import Checkbox from "../../components/common/buttons/checkbox";
+import StandardBtn from "../../components/common/buttons/standard-btn/StandardBtn";
 import ToDoItem from "../../components/common/templates/todo-item";
 import styles from "./ToDoPage.module.css";
 import { useState, useEffect } from "react";
@@ -9,6 +11,10 @@ function ToDoPage() {
   //neurendern der Komponente triggern
   //Antwort ist da? => lad die Komponente einmal mit Daten gefüllt neu
   const [todos, setTodos] = useState([]);
+  const [newId, setNewId] = useState("");
+  const [newTask, setNewTask] = useState("");
+  const [newDueDate, setNewDueDate] = useState("");
+  const [newIsDone, setNewIsDone] = useState(false);
 
   async function fetchTodos() {
     try {
@@ -21,6 +27,11 @@ function ToDoPage() {
     } catch (e) {
       console.log("Hello world", e);
     }
+  }
+
+  async function onClickAdd() {
+    console.log("Ich poste jetzt!");
+    await TodosMutations.createTodo(newId, newTask, newIsDone, newDueDate);
   }
 
   // Alternative Funktion für den API Aufruf
@@ -59,9 +70,37 @@ function ToDoPage() {
   //hier: "todo={todos[1]}" gibt das 2. todo weiter.
   return (
     <div className={styles.mainContainer}>
-      {todos.map((item) => (
-        <ToDoItem key={item.id} todo={item} />
-      ))}
+      <div>
+        <input
+          type="text"
+          value={newId}
+          placeholder="id..."
+          onChange={(event) => setNewId(event.target.value)}
+        ></input>
+        <input
+          type="text"
+          value={newTask}
+          placeholder="aufgabe..."
+          onChange={(event) => setNewTask(event.target.value)}
+        ></input>
+        <input
+          type="text"
+          value={newDueDate}
+          placeholder="datum..."
+          onChange={(event) => setNewDueDate(event.target.value)}
+        ></input>
+        <Checkbox
+          isChecked={newIsDone}
+          onClick={() => setNewIsDone(!newIsDone)}
+        ></Checkbox>
+        <StandardBtn text={"ADD"} onClick={onClickAdd} />
+      </div>
+
+      <div>
+        {todos.map((item) => (
+          <ToDoItem key={item.id} todo={item} />
+        ))}
+      </div>
     </div>
   );
 }
