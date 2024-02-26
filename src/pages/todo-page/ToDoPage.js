@@ -31,7 +31,14 @@ function ToDoPage() {
 
   async function onClickAdd() {
     console.log("Ich poste jetzt!");
-    await TodosMutations.createTodo(newId, newTask, newIsDone, newDueDate);
+    const newTodo = await TodosMutations.createTodo(
+      newId,
+      newTask,
+      newIsDone,
+      newDueDate
+    );
+
+    setTodos([...todos, newTodo]);
   }
 
   // Alternative Funktion für den API Aufruf

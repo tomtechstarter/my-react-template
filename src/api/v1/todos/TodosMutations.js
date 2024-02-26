@@ -1,16 +1,16 @@
 import api from "../../config/api";
 
 async function createTodo(id, task, isDone, dueDate) {
-  const result = api.post("/todos/create", {
+  const result = await api.post("/todos/create", {
     newId: id,
     newTask: task,
     newIsDone: isDone,
     newDueDate: dueDate,
   });
 
-  const todos = result.data;
+  const newTodo = result.data.todo;
 
-  return todos;
+  return newTodo;
 }
 
 async function markTodo(todoId, isDone) {
