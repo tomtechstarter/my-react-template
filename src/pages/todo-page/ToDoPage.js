@@ -11,7 +11,7 @@ function ToDoPage() {
   //neurendern der Komponente triggern
   //Antwort ist da? => lad die Komponente einmal mit Daten gefüllt neu
   const [todos, setTodos] = useState([]);
-  const [newId, setNewId] = useState("");
+  const [newUserId, setNewUserId] = useState("");
   const [newTask, setNewTask] = useState("");
   const [newDueDate, setNewDueDate] = useState("");
   const [newIsDone, setNewIsDone] = useState(false);
@@ -32,7 +32,7 @@ function ToDoPage() {
   async function onClickAdd() {
     console.log("Ich poste jetzt!");
     const newTodo = await TodosMutations.createTodo(
-      newId,
+      newUserId,
       newTask,
       newIsDone,
       newDueDate
@@ -80,9 +80,9 @@ function ToDoPage() {
       <div>
         <input
           type="text"
-          value={newId}
-          placeholder="id..."
-          onChange={(event) => setNewId(event.target.value)}
+          value={newUserId}
+          placeholder="New User ID..."
+          onChange={(event) => setNewUserId(event.target.value)}
         ></input>
         <input
           type="text"
