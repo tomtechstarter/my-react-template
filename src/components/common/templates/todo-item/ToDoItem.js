@@ -12,13 +12,22 @@ function ToDoItem({ todo }) {
   const [isEditMode, setIsEditMode] = useState(false);
 
   async function onClickDone() {
-    await TodosMutations.markTodo(todo.id, !isDone);
-    setIsDone(!isDone);
+    const currentIsDone = isDone;
+    try {
+      setIsDone(!currentIsDone);
+      await TodosMutations.markTodo(todo.id, !isDone);
+    } catch (e) {
+      setIsDone(currentIsDone);
+    }
   }
 
   async function onClickDelete() {
-    setIsDeleted(true);
-    await TodosMutations.deleteTodo(todo.id);
+    try {
+      setIsDeleted(true);
+      await TodosMutations.deleteTodo(todo.id);
+    } catch (e) {
+      setIsDeleted(false);
+    }
   }
 
   async function onClickSendUpdate() {

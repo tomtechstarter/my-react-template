@@ -15,7 +15,7 @@ async function createTodo(newUserId, task, isDone, dueDate) {
 
 async function markTodo(todoId, isDone) {
   const result = await api.put("/todos/mark", {
-    id: todoId,
+    todoId: todoId,
     newIsDone: isDone,
   });
 
@@ -42,7 +42,7 @@ async function deleteTodo(todoId) {
     data: { todoId },
   });
 
-  const deletedTodoId = result.data.deletedTodoId;
+  const deletedTodoId = result.data.deletedTodosId;
 
   return deletedTodoId;
 }
