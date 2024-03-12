@@ -33,17 +33,20 @@ function AddTodo({ setTodos }) {
     <div>
       <input
         type="text"
+        id={"add_todo_ti_userid"}
         value={newUserId}
         placeholder="New User ID..."
         onChange={(event) => setNewUserId(event.target.value)}
       ></input>
       <input
+        id={"add_todo_ti_task"}
         type="text"
         value={newTask}
         placeholder="aufgabe..."
         onChange={(event) => setNewTask(event.target.value)}
       ></input>
       <input
+        id={"add_todo_ti_date"}
         type="text"
         value={newDueDate}
         placeholder="datum..."
@@ -53,7 +56,7 @@ function AddTodo({ setTodos }) {
         isChecked={newIsDone}
         onClick={() => setNewIsDone(!newIsDone)}
       ></Checkbox>
-      <StandardBtn text={"ADD"} onClick={onClickAdd} />
+      <StandardBtn id={"add_todo_btn"} text={"ADD"} cla onClick={onClickAdd} />
     </div>
   );
 }
