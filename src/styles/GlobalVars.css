@@ -1,5 +1,6 @@
 :root {
-  --background-color: white;
-  --primary-color: blue;
-  --secondary-color: green;
+  --background-color: #0b0b62;
+  --primary-color: rgb(255, 221, 0);
+  --secondary-color: #61610b;
+  --navbar-color: white;
 }

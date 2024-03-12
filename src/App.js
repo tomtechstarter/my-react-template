@@ -21,7 +21,7 @@ function App() {
           <Route path="/todo" element={<ToDoPage />} />
         </Routes>
       </Content>
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
   );
 }
