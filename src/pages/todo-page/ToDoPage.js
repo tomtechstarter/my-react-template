@@ -28,7 +28,7 @@ function ToDoPage() {
 
   return (
     <div className={styles.mainContainer}>
-      <div>
+      <div className={styles.todoscontainer}>
         {todos.map((item) => (
           <ToDoItem key={item.id} todo={item} />
         ))}
@@ -37,7 +37,7 @@ function ToDoPage() {
       {showAddTodo && (
         <AddTodo onClickClose={onClickShowAddTodo} setTodos={setTodos} />
       )}
-      <ShowAddTodoBtn setShowTodo={onClickShowAddTodo} />
+      {!showAddTodo && <ShowAddTodoBtn setShowTodo={onClickShowAddTodo} />}
     </div>
   );
 }

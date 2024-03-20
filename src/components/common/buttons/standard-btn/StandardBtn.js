@@ -1,13 +1,13 @@
 import styles from "./StandardBtn.module.css";
 
-function StandardBtn({ onClick, text, style, myClassName }) {
+function StandardBtn({ onClick, text, style, myClassName, isLoading }) {
   return (
     <div
       className={`${styles.myBtn} ${myClassName}`}
       style={style}
-      onClick={onClick}
+      onClick={!isLoading ? onClick : undefined}
     >
-      {text}
+      {isLoading ? "Lädt ..." : text}
     </div>
   );
 }
