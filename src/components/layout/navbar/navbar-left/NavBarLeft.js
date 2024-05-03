@@ -2,8 +2,11 @@ import { useNavigate } from "react-router-dom";
 import AppData from "../../../../utils/AppData";
 import StandardBtn from "../../../common/buttons/standard-btn";
 import styles from "./NavBarLeft.module.css";
+import { useContext } from "react";
+import UserContext from "../../../../contexts/user-context/userContext";
 
 function NavBarLeft() {
+  const { user } = useContext(UserContext);
   const navigate = useNavigate();
   function onClickTodo() {
     navigate("/todo");
@@ -14,12 +17,16 @@ function NavBarLeft() {
   }
   return (
     <div className={styles.mainContainer}>
-      <img
-        onClick={onClickLogo}
-        className={styles.logImg}
-        src={AppData.logo}
-        alt="logo"
-      />
+      {user ? (
+        <img
+          onClick={onClickLogo}
+          className={styles.logImg}
+          src={user.profileImgUrl}
+          alt="logo"
+        />
+      ) : (
+        <div>My Todo App</div>
+      )}
       <StandardBtn text={"Todos"} onClick={onClickTodo} />
     </div>
   );
