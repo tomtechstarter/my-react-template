@@ -1,23 +1,30 @@
-import { useEffect, useState } from "react";
-import Checkbox from "../../components/common/buttons/checkbox";
-import LoadingDiv from "../../components/common/templates/loading-div";
+import { useContext, useState } from "react";
 import styles from "./SignUpPage.module.css";
 import StandarTextinput from "../../components/common/textinputs/standard-ti";
 import StandardBtn from "../../components/common/buttons/standard-btn";
+import UserContext from "../../contexts/user-context/userContext";
 
 function SignUpPage() {
-  const [stayLoggedIn, setStayLoggedIn] = useState(false);
+  const { registerUser } = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [repeatedpassword, setRepeatedPassword] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  function onClickStayLoggedIn() {
-    setStayLoggedIn(!stayLoggedIn);
+  async function onClickSignup() {
+    setError(null);
+    try {
+      setIsLoading(true);
+      registerUser(email, password, name, imageUrl);
+    } catch (e) {
+      setError("Etwas ist bei der Registrierung schief gelaufen");
+    } finally {
+      setIsLoading(false);
+    }
   }
-
-  function onClickLogin() {}
 
   return (
     <div className={styles.mainContainer}>
@@ -37,8 +44,15 @@ function SignUpPage() {
       />
 
       <StandarTextinput
+        type={"text"}
+        value={imageUrl}
+        placeholder="Profibild URL"
+        setNewValue={setImageUrl}
+      />
+
+      <StandarTextinput
         type={"password"}
-        value={setPassword}
+        value={password}
         placeholder="Password"
         setNewValue={setPassword}
       />
@@ -53,8 +67,10 @@ function SignUpPage() {
       <StandardBtn
         isLoading={isLoading}
         text={"Sign Up"}
-        onClick={onClickLogin}
+        onClick={onClickSignup}
       />
+
+      {error && <div>{error}</div>}
     </div>
   );
 }

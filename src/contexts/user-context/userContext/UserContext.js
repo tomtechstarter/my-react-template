@@ -24,16 +24,39 @@ export const UserProvider = ({ children }) => {
     }
   }
 
+  async function registerUser(email, password, name, imageUrl) {
+    const result = await AuthMutations.signUpUser(
+      email,
+      password,
+      name,
+      imageUrl
+    );
+
+    if (result.user) {
+      setTimeout(() => {
+        navigate("/profile");
+      }, 200);
+      setUser(result.user);
+    }
+  }
+
   function logoutUser() {
     setUser(null);
     TokenHandler.deleteAccessToken();
   }
 
   async function loadCurrentUser() {
-    const result = await UserQueries.fetchCurrentUser();
+    try {
+      const result = await UserQueries.fetchCurrentUser();
 
-    if (result.user) {
-      setUser(result.user);
+      if (result.user) {
+        setUser(result.user);
+      }
+    } catch (e) {
+      if (e.response.status === 403) {
+        logoutUser();
+      }
+      console.log("HERE IS MY ERROR", e.response.status);
     }
   }
 
@@ -42,7 +65,7 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, loginUser, logoutUser }}>
+    <UserContext.Provider value={{ user, loginUser, logoutUser, registerUser }}>
       {children}
     </UserContext.Provider>
   );

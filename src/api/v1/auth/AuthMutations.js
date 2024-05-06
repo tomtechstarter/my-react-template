@@ -15,4 +15,18 @@ async function loginUser(email, password) {
   return { user };
 }
 
-export default { loginUser };
+async function signUpUser(email, password, name, imgUrl) {
+  const result = await api.post("/auth/signup", {
+    email: email,
+    password: password,
+    name: name,
+    profileImgUrl: imgUrl,
+  });
+  const { user, tokens } = result.data;
+
+  const accessToken = tokens.accessToken;
+  TokenHandler.saveAcccessToken(accessToken);
+  return { user };
+}
+
+export default { loginUser, signUpUser };
