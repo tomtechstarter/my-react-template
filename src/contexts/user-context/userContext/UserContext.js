@@ -43,6 +43,7 @@ export const UserProvider = ({ children }) => {
   function logoutUser() {
     setUser(null);
     TokenHandler.deleteAccessToken();
+    navigate("/");
   }
 
   async function loadCurrentUser() {

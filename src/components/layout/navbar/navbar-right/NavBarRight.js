@@ -3,6 +3,7 @@ import StandardBtn from "../../../common/buttons/standard-btn";
 import styles from "./NavBarRight.module.css";
 import UserContext from "../../../../contexts/user-context/userContext/UserContext";
 import { useNavigate } from "react-router-dom";
+import NavBarProfileBtn from "./navbar-profile-btn";
 
 function NavBarRight() {
   const { user, logoutUser } = useContext(UserContext);
@@ -19,7 +20,7 @@ function NavBarRight() {
   return (
     <div className={styles.mainContainer}>
       {user ? (
-        <StandardBtn onClick={logoutUser} text={"Logout"} />
+        <NavBarProfileBtn />
       ) : (
         <>
           <StandardBtn onClick={loginMyUser} text={"Login"} />
