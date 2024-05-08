@@ -1,59 +1,78 @@
-import { TodosMutations, TodosQueries } from "../../../api/v1/todos";
+import { TodosMutations } from "../../../api/v1/todos";
 import Checkbox from "../../../components/common/buttons/checkbox";
 import StandardBtn from "../../../components/common/buttons/standard-btn/StandardBtn";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import styles from "./AddTodo.module.css";
+import StandarTextinput from "../../../components/common/textinputs/standard-ti";
 
-function AddTodo({ setTodos }) {
-  //Da wir die Werte erst aus der API mit einem HTTP GET holen müssen,
-  //nutzen wir die States von React aus, die bei Veränderung ein
-  //neurendern der Komponente triggern
-  //Antwort ist da? => lad die Komponente einmal mit Daten gefüllt neu
-
+function AddTodo({ setTodos, onClickClose }) {
   const [newUserId, setNewUserId] = useState("");
   const [newTask, setNewTask] = useState("");
   const [newDueDate, setNewDueDate] = useState("");
-  const [newIsDone, setNewIsDone] = useState(false);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   async function onClickAdd() {
-    console.log("Ich poste jetzt!");
-    const newTodo = await TodosMutations.createTodo(
-      newUserId,
-      newTask,
-      newIsDone,
-      newDueDate
-    );
+    console.log("Ich poste jetzt!", newUserId, newTask, newDueDate);
 
-    setTodos((todos) => [...todos, newTodo]);
+    // Wenn kein datum dann brich die Funktion ab
+    if (newUserId.length < 1 || newTask.length < 1 || newDueDate.length < 1) {
+      alert("Bitte fülle alle Textfelder aus");
+      return;
+    }
+
+    setIsLoading(true);
+    setTimeout(async () => {
+      const newTodo = await TodosMutations.createTodo(
+        newUserId,
+        newTask,
+        false,
+        newDueDate
+      );
+      setIsLoading(false);
+      setTodos((todos) => [...todos, newTodo]);
+      onClickClose();
+    }, 2000);
+  }
+  function onClickChild(event) {
+    event.stopPropagation();
   }
 
-  //wenn wir die Daten in todos drin haben (durch den fetch)
-  //können wir auch todos, sowie dessen Inhalte in Probs weitergeben
-  //hier: "todo={todos[1]}" gibt das 2. todo weiter.
   return (
-    <div>
-      <input
-        type="text"
-        value={newUserId}
-        placeholder="New User ID..."
-        onChange={(event) => setNewUserId(event.target.value)}
-      ></input>
-      <input
-        type="text"
-        value={newTask}
-        placeholder="aufgabe..."
-        onChange={(event) => setNewTask(event.target.value)}
-      ></input>
-      <input
-        type="text"
-        value={newDueDate}
-        placeholder="datum..."
-        onChange={(event) => setNewDueDate(event.target.value)}
-      ></input>
-      <Checkbox
-        isChecked={newIsDone}
-        onClick={() => setNewIsDone(!newIsDone)}
-      ></Checkbox>
-      <StandardBtn text={"ADD"} onClick={onClickAdd} />
+    <div onClick={onClickClose} className={styles.container}>
+      <div onClick={onClickChild} className={styles.mainContainer}>
+        <h2>Neues Todo hinzufügen</h2>
+        <StandarTextinput
+          type={"text"}
+          id={"add_todo_ti_userid"}
+          value={newUserId}
+          placeholder="New User ID..."
+          setNewValue={setNewUserId}
+        />
+
+        <StandarTextinput
+          type={"text"}
+          id={"add_todo_ti_task"}
+          value={newTask}
+          placeholder="aufgabe..."
+          setNewValue={setNewTask}
+        />
+
+        <StandarTextinput
+          type={"date"}
+          id={"add_todo_ti_date"}
+          value={newDueDate}
+          placeholder="datum..."
+          setNewValue={setNewDueDate}
+        />
+
+        <StandardBtn
+          isLoading={isLoading}
+          id={"add_todo_btn"}
+          text={"ADD"}
+          onClick={onClickAdd}
+        />
+      </div>
     </div>
   );
 }

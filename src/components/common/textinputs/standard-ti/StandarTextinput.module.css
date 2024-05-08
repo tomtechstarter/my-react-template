@@ -1,0 +1,7 @@
+.ticontainer {
+  max-width: 600px;
+  height: 35px;
+  border-radius: 8px;
+  min-width: 200px;
+  margin: 4px;
+}

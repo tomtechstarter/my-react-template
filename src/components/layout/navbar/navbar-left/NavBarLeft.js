@@ -1,10 +1,15 @@
-import AppData from "../../../../utils/AppData";
+import { useNavigate } from "react-router-dom";
 import styles from "./NavBarLeft.module.css";
 
 function NavBarLeft() {
+  const navigate = useNavigate();
+
+  function onClickLogo() {
+    navigate("/");
+  }
   return (
-    <div className={styles.mainContainer}>
-      <img className={styles.logImg} src={AppData.logo} alt="logo" />
+    <div onClick={onClickLogo} className={styles.mainContainer}>
+      <div>My Todo App</div>
     </div>
   );
 }

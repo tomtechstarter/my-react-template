@@ -1,5 +1,5 @@
 .mainContainer {
-  background-color: var(--background-color);
+  background-color: var(--navbar-color);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,6 +8,7 @@
   position: fixed;
   width: 100vw;
   top: 0;
+  z-index: 1;
 }
 
 .spacer {
